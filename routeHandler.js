@@ -6,12 +6,7 @@ async function getAllTodos(req, res) {
 		if (!todos) {
 			throw new Error("No data found!!");
 		}
-		res.status(200).json({
-			status: "success",
-			data: {
-				todos,
-			},
-		});
+		res.status(200).json([...todos]);
 	} catch (err) {
 		res.status(400).json({
 			status: "fail",
@@ -30,10 +25,7 @@ async function updateTodo(req, res) {
 			throw new Error("No todo found with that ID");
 		}
 		res.status(200).json({
-			status: "success",
-			data: {
-				todo,
-			},
+			...todo,
 		});
 	} catch (err) {
 		res.status(400).json({
@@ -49,10 +41,7 @@ async function deleteTodo(req, res) {
 		if (!todo) {
 			throw new Error("No document found with that ID");
 		}
-		res.status(204).json({
-			status: "success",
-			data: null,
-		});
+		res.status(204).json({ status: "success" });
 	} catch (err) {
 		res.status(400).json({
 			status: "fail",
@@ -65,10 +54,7 @@ async function createTodo(req, res) {
 	try {
 		const todo = await Todo.create(req.body);
 		res.status(201).json({
-			status: "success",
-			data: {
-				todo,
-			},
+			...todo,
 		});
 	} catch (err) {
 		res.status(400).json({

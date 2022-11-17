@@ -14,10 +14,10 @@ mongoose.connect("mongodb://localhost:27017/Todo_App_server").then(() => {
 	console.log("MongoDB connected successfuly!");
 });
 
-app.get("/", routehandler.getAllTodos);
-app.post("/", routehandler.createTodo);
-app.put("/:id", routehandler.updateTodo);
-app.delete("/:id", routehandler.deleteTodo);
+app.get("/todos", routehandler.getAllTodos);
+app.post("/todos", routehandler.createTodo);
+app.put("/todos/:id", routehandler.updateTodo);
+app.delete("/todos/:id", routehandler.deleteTodo);
 
 app.listen(2500, () => {
 	console.log(`Server running on: 127.0.0.1:2500...`);

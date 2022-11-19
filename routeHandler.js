@@ -2,7 +2,7 @@ const Todo = require("./todoModel");
 
 async function getAllTodos(req, res) {
 	try {
-		const todos = await Todo.find();
+		const todos = await Todo.find().sort("doDay");
 		if (!todos) {
 			throw new Error("No data found!!");
 		}

@@ -34,6 +34,23 @@ async function updateTodo(req, res) {
 		});
 	}
 }
+async function getTodo(req, res) {
+	try {
+		const todo = await Todo.findById({ _id: req.params.id });
+		if (!todo) {
+			throw new Error("No todo found with that ID");
+		}
+		console.log(todo);
+		res.status(200).json({
+			...todo,
+		});
+	} catch (err) {
+		res.status(400).json({
+			status: "fail",
+			message: { err },
+		});
+	}
+}
 
 async function deleteTodo(req, res) {
 	try {
@@ -65,6 +82,7 @@ async function createTodo(req, res) {
 }
 
 module.exports = {
+	getTodo,
 	getAllTodos,
 	updateTodo,
 	deleteTodo,

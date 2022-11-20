@@ -15,6 +15,7 @@ mongoose.connect("mongodb://localhost:27017/Todo_App_server").then(() => {
 });
 
 app.get("/todos", routehandler.getAllTodos);
+app.get("/todos/:id", routehandler.getTodo);
 app.post("/todos", routehandler.createTodo);
 app.put("/todos/:id", routehandler.updateTodo);
 app.delete("/todos/:id", routehandler.deleteTodo);
